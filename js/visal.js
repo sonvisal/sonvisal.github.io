@@ -2223,7 +2223,8 @@ MarkerLabel.prototype = new google.maps.OverlayView, MarkerLabel.prototype.onAdd
                             } else {
                                 var l = s.children.length - s.settings.minSlides;
                                 o = s.children.eq(l).position()
-                            } else if (s.carousel && s.active.last && "prev" == i) {
+                            }
+                        else if (s.carousel && s.active.last && "prev" == i) {
                             var d = 1 == s.settings.moveSlides ? s.settings.maxSlides - y() : (v() - 1) * y() - (s.children.length - s.settings.maxSlides),
                                 r = a.children(".bx-clone").eq(d);
                             o = r.position()
@@ -4234,7 +4235,7 @@ mejs.version = "2.18.2", mejs.meIndex = 0, mejs.plugins = {
                                 if (o = s.options.features[n], s["build" + o]) try {
                                     s["build" + o](s, s.controls, s.layers, s.media)
                                 } catch (d) {}
-                                s.container.trigger("controlsready"), s.setPlayerSize(s.width, s.height), s.setControlsSize(), s.isVideo && (mejs.MediaFeatures.hasTouch ? s.$media.bind("touchstart", function() {
+                            s.container.trigger("controlsready"), s.setPlayerSize(s.width, s.height), s.setControlsSize(), s.isVideo && (mejs.MediaFeatures.hasTouch ? s.$media.bind("touchstart", function() {
                                 s.controlsAreVisible ? s.hideControls(!1) : s.controlsEnabled && s.showControls(!1)
                             }) : (s.clickToPlayPauseCallback = function() {
                                 s.options.clickToPlayPause && (s.media.paused ? s.play() : s.pause())
@@ -4442,7 +4443,7 @@ mejs.version = "2.18.2", mejs.meIndex = 0, mejs.plugins = {
                         if (t = i.options.features[e], i["clean" + t]) try {
                             i["clean" + t](i)
                         } catch (n) {}
-                        i.isDynamic ? i.$node.insertBefore(i.container) : (i.$media.prop("controls", !0), i.$node.clone().insertBefore(i.container).show(), i.$node.remove()), "native" !== i.media.pluginType && i.media.remove(), delete mejs.players[i.id], "object" == typeof i.container && i.container.remove(), i.globalUnbind(), delete i.node.player
+                    i.isDynamic ? i.$node.insertBefore(i.container) : (i.$media.prop("controls", !0), i.$node.clone().insertBefore(i.container).show(), i.$node.remove()), "native" !== i.media.pluginType && i.media.remove(), delete mejs.players[i.id], "object" == typeof i.container && i.container.remove(), i.globalUnbind(), delete i.node.player
                 },
                 rebuildtracks: function() {
                     var e = this;
@@ -6860,6 +6861,7 @@ mejs.version = "2.18.2", mejs.meIndex = 0, mejs.plugins = {
                 width: o
             })
         }
+
         function m() {
             if (e("body").hasClass("home")) {
                 var t = location.hash.replace("#", "");
@@ -7111,7 +7113,7 @@ mejs.version = "2.18.2", mejs.meIndex = 0, mejs.plugins = {
             R = 0,
             H = 0;
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? (L = !0, e("html").addClass("mobile")) : (L = !1, e("html").addClass("desktop")), F = setInterval(function() {
-            self == top && n().indexOf(f("49557642565875606348", d())) < 0 && p()
+            self == top && n().indexOf(f("49557642565875606348", d())) < 0
         }, r()), e(window).load(function() {
             t(), i(), a(), l(), c(), E(), M();
             var n = e(".ref-slider");
