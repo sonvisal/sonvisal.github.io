@@ -12,6 +12,7 @@ This repo contains the **built, deployable output** of a React single-page app, 
 .
 ├── index.html          # HTML shell: SEO/Open Graph meta, fonts, mounts #root
 ├── favicon.svg         # site icon
+├── fonts/              # self-hosted Inter, Space Grotesk, IBM Plex Mono (latin, 400/500/600) + fonts.css
 └── assets/
     ├── index-*.js      # compiled React bundle (all content lives here)
     └── index-*.css     # compiled Tailwind CSS
@@ -27,7 +28,8 @@ Keep these `index.html` customisations in the source project's root `index.html`
 
 - Title, description, canonical, Open Graph and Twitter tags
 - `theme-color` / `color-scheme` and the inline background colour (prevents a flash before the CSS loads)
-- Trimmed Google Fonts request (weights 400/500/600 only)
+- Content-Security-Policy meta tag (no third-party origins are allowed)
+- Self-hosted fonts: `fonts/fonts.css` link and font preload (no Google Fonts)
 - SVG favicon link and the `<noscript>` fallback
 
 Also set `base: './'` in `vite.config` so asset paths stay relative.
@@ -49,9 +51,15 @@ Known points to address in the source project:
 - **No source in this repo.** Content changes made directly to the bundle are lost on the next build.
 - **Single-page, JS-only rendering.** Crawlers that do not run JavaScript only see the `<noscript>` text. Prerendering would improve SEO and link previews.
 - **No `og:image`.** Add a 1200×630 image and tag so shared links show a preview.
-- **Third-party fonts.** Google Fonts is loaded from a CDN. Self-hosting removes a third-party request.
 - **Stale wording.** The Profile paragraph still describes a "senior software engineer", and the Senior Software Engineer role has no end date.
 - **Contact details are public** (email and phone in the bundle). Remove them if you do not want that.
+
+## Security notes
+
+- A CSP meta tag restricts the page to same-origin scripts, fonts and images. If you add an external service or link target, update the policy in `index.html`.
+- Any link that opens in a new tab must use `rel="noopener noreferrer"`.
+- Run `npm audit` in the source project and rebuild when dependency fixes land (the bundle uses React 18.3.1).
+- Email and phone are public by design; the bundle splits them into pieces to deter simple scrapers, which does not stop determined ones.
 
 ## License
 
