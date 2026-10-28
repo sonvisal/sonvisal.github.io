@@ -1,0 +1,157 @@
+:root {
+  --bg: #f8f9fa;
+  --surface: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --accent: #2d5a27;
+  --accent-hover: #3a7232;
+  --accent-soft: rgba(45, 90, 39, 0.12);
+  --on-accent: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1412;
+    --surface: #161d1a;
+    --text: #f3f4f6;
+    --muted: #9ca3af;
+    --border: #263029;
+    --accent: #7cc576;
+    --accent-hover: #96d690;
+    --accent-soft: rgba(124, 197, 118, 0.14);
+    --on-accent: #0f1412;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem 1rem;
+  background:
+    radial-gradient(60rem 30rem at 50% -10%, var(--accent-soft), transparent 70%),
+    var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  width: 100%;
+  max-width: 32rem;
+  padding: 3rem 2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  animation: rise 0.5s ease-out both;
+}
+
+.code {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.05em;
+  margin: 0;
+  font-size: clamp(4.5rem, 20vw, 7rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--accent);
+}
+.code span {
+  display: inline-block;
+  animation: drop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.code span:nth-child(1) { animation-delay: 0.1s; }
+.code span:nth-child(3) { animation-delay: 0.3s; }
+.code .zero {
+  position: relative;
+  width: 0.8em;
+  height: 0.8em;
+  border: 0.14em solid currentColor;
+  border-radius: 50%;
+  animation:
+    drop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both,
+    float 3s ease-in-out 1s infinite;
+}
+/* Spinning dot orbiting inside the zero */
+.code .zero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 0.14em;
+  height: 0.14em;
+  border-radius: 50%;
+  background: currentColor;
+  animation: orbit 2s linear infinite;
+}
+.code .four { animation-name: drop, wobble; animation-duration: 0.7s, 4s;
+  animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1), ease-in-out;
+  animation-delay: 0.1s, 1.2s; animation-iteration-count: 1, infinite;
+  animation-fill-mode: both; }
+.code .four:last-child { animation-delay: 0.3s, 1.6s; }
+
+h1 { margin: 1rem 0 0.5rem; font-size: 1.5rem; }
+p { margin: 0; color: var(--muted); }
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1.25rem;
+  border-radius: 0.6rem;
+  border: 1px solid var(--accent);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:focus-visible { outline: 3px solid var(--accent-soft); outline-offset: 2px; }
+.btn-primary { background: var(--accent); color: var(--on-accent); }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-secondary { background: transparent; color: var(--accent); }
+.btn-secondary:hover { background: var(--accent-soft); }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes drop {
+  from { opacity: 0; transform: translateY(-2.5rem) scale(0.8); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-0.12em); }
+}
+@keyframes wobble {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-4deg); }
+  75% { transform: rotate(4deg); }
+}
+@keyframes orbit {
+  from { transform: rotate(0) translateY(-0.17em); }
+  to { transform: rotate(360deg) translateY(-0.17em); }
+}
+@media (prefers-reduced-motion: reduce) {
+  main,
+  main .code span,
+  main .code .zero,
+  main .code .zero::after { animation: none; }
+  .btn { transition: none; }
+}

@@ -1,0 +1,19 @@
+# Visal Son
+
+> Portfolio of Visal Son, Manager BA specializing in business analysis, API integrations and payment and banking systems, based in Phnom Penh, Cambodia.
+
+Visal Son is a Manager BA at AMK Bank Plc. with 6+ years of hands-on experience in API development and financial systems. The work covers payment gateway integrations, mobile banking services, switching platforms (SmartVista), ESB Axway and the T24 core banking API. The site is a single page; each link below jumps to a section of it.
+
+## Portfolio
+
+- [Profile](https://sonvisal.github.io/#about): Who Visal Son is, focus areas, location and languages (Khmer, English).
+- [Experience](https://sonvisal.github.io/#log): Career timeline from Junior Web Developer (2015) to Manager BA at AMK Bank, with responsibilities for each role.
+- [Skills & Systems](https://sonvisal.github.io/#systems): Payment gateways, SmartVista, ESB Axway, T24 Core Banking API, Node.js, PHP/Laravel, Python, PostgreSQL, MongoDB.
+- [Education](https://sonvisal.github.io/#education): Bachelor of Web Programming (Asia Euro University), Web Programming Diploma (Passerelles Numériques Cambodia), Oracle Database 12cR2 Administration certificate.
+- [Volunteer Experience](https://sonvisal.github.io/#volunteer): Communication & Event Manager, PNC Cambodia Alumni Association.
+- [Contact](https://sonvisal.github.io/#contact): How to get in touch.
+
+## Optional
+
+- [GitHub](https://github.com/sonvisal): GitHub profile and the repository for this site.
+- [Sitemap](https://sonvisal.github.io/sitemap.xml): XML sitemap for crawlers.
