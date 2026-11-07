@@ -6,14 +6,15 @@ Live site: https://sonvisal.github.io/
 
 ## What this repository is
 
-This repo contains the **built, deployable output** of a React single-page app, served by GitHub Pages from the repository root. It does **not** contain the source code.
+This repo contains the **built, deployable output** of a React single-page app, served by GitHub Pages from the `docs/` folder on `master`. It does **not** contain the source code.
 
 ```
-.
+docs/
 ├── index.html          # HTML shell: SEO/Open Graph meta, fonts, mounts #root
 ├── robots.txt, sitemap.xml, 404.html   # SEO files
 ├── favicon.svg         # site icon
-├── img/                # banner.webp (page banner), og.jpg (1200x630 link preview)
+├── img/                # no_db_text.png (page banner), og.jpg (1200x630 link preview)
+├── motion.js, motion.css   # scroll-triggered section animations
 ├── framebust.js        # clickjacking mitigation (GitHub Pages cannot send frame headers)
 ├── fonts/              # self-hosted Inter, Space Grotesk, IBM Plex Mono (latin, 400/500/600) + fonts.css
 └── assets/
@@ -40,8 +41,8 @@ Also set `base: './'` in `vite.config` so asset paths stay relative.
 ## Deploying
 
 1. Build the source project (`npm run build`).
-2. Replace `index.html` and `assets/` in this repo with the new build output (keep `favicon.svg`, or put it in the source project's `public/` folder).
-3. Commit and push to the default branch. GitHub Pages publishes it.
+2. Replace `docs/index.html` and `docs/assets/` in this repo with the new build output (keep `favicon.svg`, or put it in the source project's `public/` folder).
+3. Commit and push to `master`. GitHub Pages publishes the `docs/` folder.
 
 ## Icons
 
