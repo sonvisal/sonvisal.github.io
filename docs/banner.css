@@ -1,0 +1,113 @@
+/* Animated text banner (banner.js). Fixed navy palette so it matches the portrait backdrop. */
+.hb{--hb-ease:cubic-bezier(.2,.7,.2,1);--hb-ink:#eaf3ff;--hb-dim:#9cc8ff;--hb-line:rgba(120,180,255,.28);
+  position:relative;margin-top:4rem;overflow:hidden;color:var(--hb-ink);
+  background:radial-gradient(120% 90% at 50% 0%,#1f74de 0%,#0d47a1 38%,#082a66 70%,#051a40 100%);
+  padding:28px 16px 20px;font-family:inherit}
+.hb *{box-sizing:border-box}
+.hb ul,.hb ol{list-style:none;margin:0;padding:0}
+
+/* Background: faint grid + slow light sweep */
+.hb-bg{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(rgba(140,190,255,.07) 1px,transparent 1px) 0 0/44px 44px,
+             linear-gradient(90deg,rgba(140,190,255,.07) 1px,transparent 1px) 0 0/44px 44px;
+  -webkit-mask-image:radial-gradient(ellipse at 50% 30%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 30%,#000 30%,transparent 75%)}
+.hb-bg::after{content:"";position:absolute;inset:-20% -60%;
+  background:linear-gradient(100deg,transparent 40%,rgba(160,210,255,.13) 50%,transparent 60%);
+  animation:hb-sweep 9s linear infinite}
+@keyframes hb-sweep{from{transform:translateX(-40%)}to{transform:translateX(40%)}}
+
+.hb-inner{position:relative;max-width:76rem;margin:0 auto}
+
+/* Top row: 3 skills | portrait | 2 skills */
+.hb-top{display:grid;grid-template-columns:3fr minmax(150px,210px) 2fr;align-items:center;gap:8px 20px}
+.hb-skills{display:grid;gap:14px}
+.hb-l{grid-template-columns:repeat(3,1fr)}
+.hb-r{grid-template-columns:repeat(2,1fr)}
+.hb-skill{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;min-width:0}
+.hb-ring{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;color:#fff;
+  background:radial-gradient(circle at 35% 30%,#2f8cff,#0b4fb3 70%);
+  border:2px solid rgba(110,190,255,.85);box-shadow:0 0 0 5px rgba(80,160,255,.12),0 0 22px rgba(70,160,255,.55)}
+.hb-ring svg{width:30px;height:30px}
+.hb-skill strong{font-size:15px;line-height:1.25;font-weight:600;color:#fff}
+.hb-sub{font-size:12px;line-height:1.35;color:var(--hb-dim)}
+
+.hb-photo{position:relative;align-self:end;justify-self:center;width:100%;max-width:210px}
+.hb-photo::before{content:"";position:absolute;inset:8% -12% 0;border-radius:50% 50% 0 0;
+  background:radial-gradient(circle at 50% 40%,rgba(120,200,255,.55),transparent 65%);filter:blur(8px)}
+.hb-photo img{position:relative;display:block;width:100%;height:auto;border-radius:999px 999px 18px 18px;
+  -webkit-mask-image:linear-gradient(#000 82%,transparent);mask-image:linear-gradient(#000 82%,transparent)}
+
+/* Eyebrow typewriter */
+.hb-eyebrow{margin:18px 0 10px;text-align:center;font:500 11px/1.4 'IBM Plex Mono',ui-monospace,monospace;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--hb-dim);min-height:1.4em}
+.hb-caret{display:inline-block;width:7px;height:1.1em;margin-left:4px;vertical-align:-2px;background:var(--hb-dim);animation:hb-blink 1s steps(1) infinite}
+@keyframes hb-blink{50%{opacity:0}}
+
+/* Workflow steps */
+.hb-steps{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:10px}
+.hb-step{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;
+  padding:14px 8px 12px;border-radius:14px;cursor:default;
+  background:rgba(255,255,255,.05);border:1px solid var(--hb-line);
+  transition:transform .45s var(--hb-ease),background-color .45s,border-color .45s,box-shadow .45s}
+.hb-step:not(:last-child)::after{content:"›";position:absolute;right:-9px;top:34px;font-size:18px;line-height:1;color:var(--hb-dim);z-index:1}
+.hb-n{position:absolute;top:6px;left:9px;font:500 10px 'IBM Plex Mono',ui-monospace,monospace;color:rgba(160,200,255,.6)}
+.hb-ico{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:#fff;
+  background:var(--c);box-shadow:0 0 0 3px rgba(255,255,255,.12),0 4px 14px -4px var(--c);transition:transform .45s var(--hb-ease)}
+.hb-ico svg{width:21px;height:21px}
+.hb-step strong{font-size:12.5px;line-height:1.3;font-weight:600;color:#fff}
+.hb-note{font-size:11px;line-height:1.3;color:var(--hb-dim)}
+.hb-step.done{border-color:rgba(120,190,255,.45)}
+.hb-step.on{transform:translateY(-5px);background:rgba(130,195,255,.16);border-color:#8fd0ff;
+  box-shadow:0 10px 26px -10px rgba(110,190,255,.8)}
+.hb-step.on .hb-ico{transform:scale(1.12);animation:hb-pulse 1.4s ease-out}
+@keyframes hb-pulse{from{box-shadow:0 0 0 0 var(--c)}to{box-shadow:0 0 0 14px transparent}}
+
+.hb-track{height:2px;margin:14px auto 0;max-width:76rem;background:rgba(140,190,255,.18);border-radius:2px;overflow:hidden}
+.hb-fill{display:block;height:100%;background:linear-gradient(90deg,#5fb4ff,#a6e1ff);transform-origin:0 50%;transform:scaleX(0);transition:transform .8s var(--hb-ease)}
+.hb-caption{margin:10px 0 0;text-align:center;font-size:13px;color:var(--hb-ink);min-height:1.4em}
+.hb-caption b{font:500 11px 'IBM Plex Mono',ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;color:#8fd0ff;margin-right:6px}
+.hb-caption em{font-style:normal;color:var(--hb-dim)}
+.hb-caption.show{animation:hb-fade .5s var(--hb-ease)}
+@keyframes hb-fade{from{opacity:0;transform:translateY(6px)}}
+
+/* Entrance animations (only when motion is allowed) */
+.hb:not(.hb-static) .hb-ring{transform:scale(.4);opacity:0;transition:transform .7s cubic-bezier(.3,1.5,.5,1),opacity .5s;transition-delay:calc(var(--k)*.12s + .1s)}
+.hb:not(.hb-static) .hb-w{display:inline-block;overflow:hidden;vertical-align:bottom}
+.hb:not(.hb-static) .hb-w>span{display:inline-block;transform:translateY(105%);transition:transform .7s var(--hb-ease);transition-delay:calc(var(--i)*.06s + .35s)}
+.hb:not(.hb-static) .hb-sub{opacity:0;transform:translateY(6px);transition:opacity .6s,transform .6s var(--hb-ease);transition-delay:calc(var(--k)*.12s + .7s)}
+.hb:not(.hb-static) .hb-photo{opacity:0;transform:translateY(24px) scale(.96);transition:opacity .9s,transform .9s var(--hb-ease)}
+.hb:not(.hb-static) .hb-step{opacity:0;translate:0 18px;transition:transform .45s var(--hb-ease),background-color .45s,border-color .45s,box-shadow .45s,opacity .6s calc(var(--k)*.08s + 1s),translate .6s var(--hb-ease) calc(var(--k)*.08s + 1s)}
+.hb.go .hb-ring{transform:none;opacity:1}
+.hb.go .hb-w>span{transform:none}
+.hb.go .hb-sub,.hb.go .hb-photo{opacity:1;transform:none}
+.hb.go .hb-step{opacity:1;translate:0 0}
+.hb.go .hb-step.on{transform:translateY(-5px)}
+
+/* Tablet: skills wrap around the portrait */
+@media (max-width:1023px){
+  .hb-top{grid-template-columns:1fr;justify-items:center}
+  .hb-photo{order:-1;max-width:150px}
+  .hb-skills{display:flex;flex-wrap:wrap;justify-content:center;width:100%;gap:16px 12px}
+  .hb-skill{flex:0 0 calc(33.333% - 8px)}
+  .hb-steps{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding:14px 2px 6px;scrollbar-width:none}
+  .hb-steps::-webkit-scrollbar{display:none}
+  .hb-step{flex:0 0 158px;scroll-snap-align:center}
+}
+/* Phone: compact badges, subtitles hidden to keep the banner short */
+@media (max-width:600px){
+  .hb{padding:20px 16px 14px}
+  .hb-photo{max-width:120px}
+  .hb-top{gap:12px}
+  .hb-skills{gap:12px 8px}
+  .hb-skill{flex-basis:calc(50% - 4px);gap:4px}
+  .hb-ring{width:46px;height:46px}
+  .hb-ring svg{width:22px;height:22px}
+  .hb-skill strong{font-size:13px}
+  .hb-sub{display:none}
+  .hb-eyebrow{margin-top:14px;letter-spacing:.18em}
+  .hb-step{flex-basis:140px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .hb-bg::after,.hb-caret{animation:none}
+}
